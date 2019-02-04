@@ -1,0 +1,18 @@
+form.form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+form.form-container > * {
+  width: 100%;
+}
+
+.action-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.margin-right {
+  margin-right: 6px;
+}
