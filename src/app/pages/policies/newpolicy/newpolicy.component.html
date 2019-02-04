@@ -1,19 +1,44 @@
 <form class="form-container" [formGroup]="form">
   <mat-form-field>
-    <input matInput placeholder="policy name" formControlName="name">
+    <input matInput placeholder="Policy Name" formControlName="name">
   </mat-form-field>
 
   <mat-form-field>
-    <textarea matInput placeholder="policy description" formControlName="description"></textarea>
+    <textarea matInput placeholder="Policy Description" formControlName="description"></textarea>
   </mat-form-field>
 
   <mat-form-field>
-    <mat-select placeholder="Select" formControlName="myOption">
-      <ng-template ngFor [ngForOf]="options" let-option>
-        <mat-option [value]="option['value']">{{ option['label'] }}</mat-option>
+    <textarea matInput placeholder="Policy Price" formControlName="price"></textarea>
+  </mat-form-field>
+
+  <mat-form-field>
+      <textarea matInput placeholder="Policy Period" formControlName="period"></textarea>
+  </mat-form-field>
+
+  <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field>
+      <mat-select placeholder="Select Risk" formControlName="riskTypeId">
+          <ng-template ngFor [ngForOf]="risks" let-risk>
+              <mat-option [value]="risk.id">{{ risk.name }} </mat-option>
+          </ng-template>
+      </mat-select>
+    </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="Select Coverage" formControlName="coverageTypeId">
+      <ng-template ngFor [ngForOf]="coverages" let-coverage>
+        <mat-option [value]="coverage.id">{{ coverage.name }} {{ coverage.coverage * 100}}%</mat-option>
       </ng-template>
     </mat-select>
   </mat-form-field>
+
+  
+
 </form>
 
 <div class="action-footer">

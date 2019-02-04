@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { PoliciesService } from '../../../services/policies/policies.service';
 import { NewPolicyComponent } from '../newpolicy/newpolicy.component';
+import { UpdatePolicyComponent } from '../updatepolicy/updatePolicy.component';
+import { CoverageTypesService } from 'src/app/services/coverageTypes/coverageTypes.service';
+import { RiskTypesService } from 'src/app/services/riskTypes/riskTypes.service';
 
 @Component({
   selector: 'app-policies',
@@ -10,41 +13,96 @@ import { NewPolicyComponent } from '../newpolicy/newpolicy.component';
 })
 export class PoliciesComponent implements OnInit {
 
-  private displayedColumns: Array<string> = ['position', 'name', 'weight', 'symbol', 'actions'];
-  private dataSource: Array<any> = [
-    {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-    {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-    {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-    {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-    {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-    {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-    {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-    {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-    {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-    {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-  ];
+  private displayedColumns: Array<string> = ['id', 'name', 'description', 'period', 'dateStart' , 'dateEnd', 'price', 
+                                            'coverageName', 'coverageName', 'coverage', 'riskName', 'actions'];
+  private dataSource: Array<any>;
+  private coverages : Array<any>;
+  private risks : Array<any>;
 
   constructor(
     private dialog: MatDialog,
-    private policiesService: PoliciesService
-  ) { }
+    private policiesService: PoliciesService,
+    private coverageTypesService : CoverageTypesService,
+    private riskTypesService : RiskTypesService
+  ) { 
 
-  ngOnInit() { }
+    this.policiesService.onChangePolicies.subscribe(
+			(id: number) => {
+        this.getAll();
+			});
+  }
 
-  private get () {
-    this.policiesService.get(1).subscribe(response => {
-      // this.dataSource = response;
+  ngOnInit() { 
+    this.getAll(); 
+    this.getAllCoverages();
+    this.getAllRisks();
+  }
+
+  private getAll() {
+    this.policiesService.get("").subscribe(response => {
+      this.dataSource = response;
+      console.log(response);
     });
   }
 
-  private opendialog () {
-    const newpolicydialog = this.dialog.open(NewPolicyComponent, {
+  private getAllCoverages() {
+    this.coverageTypesService.get("").subscribe(response => {
+      this.coverages = response;
+      console.log(response);
+    });
+  }
+
+  private getAllRisks() {
+    this.riskTypesService.get("").subscribe(response => {
+      this.risks = response;
+      console.log(response);
+    });
+  }
+
+ private getById(id: string | number){
+  this.policiesService.get(id).subscribe(response => {
+      this.opendialogEdit(response);
+  });
+ }
+
+ private removeById(id: string | number){
+  this.policiesService.delete(id).subscribe(response => {
+      this.getAll();
+  });
+}
+
+  private opendialogEdit (Policy : any) {
+    const updatePolicyDialog = this.dialog.open(UpdatePolicyComponent, {
       width: '400px',
-      data: { hola: 'mundo' }
-    });
-    newpolicydialog.afterClosed().subscribe(result => {
-      console.log(result);
+      data: {
+        dataKey: Policy,
+        coverages: this.coverages,
+        risks : this.risks
+      }
     });
   }
+
+  private opendialogCreate() {
+    const newPolicyDialog = this.dialog.open(NewPolicyComponent, {
+      width: '400px',
+      data: {
+        coverages: this.coverages,
+        risks : this.risks
+      }
+    });
+  }
+
+  private editPolicy(id: string | number){
+    this.getById(id);
+  }
+
+  private createPolicy(){
+    this.opendialogCreate();
+  }
+
+  private removePolicy(id: string | number){
+    this.removeById(id);
+  }
+
 
 }

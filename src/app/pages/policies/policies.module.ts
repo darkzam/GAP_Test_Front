@@ -6,6 +6,7 @@ import { GpaCommonModule } from '../../core/common/common.module';
 import { PoliciesRouterModule } from './policies.router.module';
 import { PoliciesComponent } from './policies/policies.component';
 import { NewPolicyComponent } from './newpolicy/newpolicy.component';
+import { UpdatePolicyComponent } from './updatepolicy/updatePolicy.component';
 
 @NgModule({
   imports: [
@@ -18,13 +19,16 @@ import { NewPolicyComponent } from './newpolicy/newpolicy.component';
   ],
   declarations: [
     PoliciesComponent,
-    NewPolicyComponent
+    NewPolicyComponent,
+    UpdatePolicyComponent
   ],
   exports: [
-    NewPolicyComponent
+    NewPolicyComponent,
+    UpdatePolicyComponent
   ],
   entryComponents: [
-    NewPolicyComponent
+    NewPolicyComponent,
+    UpdatePolicyComponent
   ]
 })
 export class PoliciesModule { }
