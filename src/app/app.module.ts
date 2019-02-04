@@ -8,7 +8,9 @@ import { AppRouterModule } from './app.router.module';
 import { AppComponent } from './app.component';
 import { ApiService } from './services/api/api.service';
 import { PoliciesService } from './services/policies/policies.service';
+import { RiskTypesService} from './services/riskTypes/riskTypes.service';
 import { GpaCommonModule } from './core/common/common.module';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -20,11 +22,13 @@ import { GpaCommonModule } from './core/common/common.module';
     BrowserAnimationsModule,
     MaterialModule,
     GpaCommonModule,
-    AppRouterModule
+    AppRouterModule,
+    CommonModule
   ],
   providers: [
     ApiService,
-    PoliciesService
+    PoliciesService,
+    RiskTypesService
   ],
   bootstrap: [AppComponent]
 })
