@@ -1,0 +1,22 @@
+<form class="form-container" [formGroup]="form">
+  <mat-form-field>
+    <input matInput placeholder="policy name" formControlName="name">
+  </mat-form-field>
+
+  <mat-form-field>
+    <textarea matInput placeholder="policy description" formControlName="description"></textarea>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="Select" formControlName="myOption">
+      <ng-template ngFor [ngForOf]="options" let-option>
+        <mat-option [value]="option['value']">{{ option['label'] }}</mat-option>
+      </ng-template>
+    </mat-select>
+  </mat-form-field>
+</form>
+
+<div class="action-footer">
+  <button mat-raised-button color="primary" class="margin-right" (click)="cancelForm()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="submitForm()">Save</button>
+</div>
