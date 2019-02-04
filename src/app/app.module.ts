@@ -11,6 +11,7 @@ import { PoliciesService } from './services/policies/policies.service';
 import { RiskTypesService} from './services/riskTypes/riskTypes.service';
 import { GpaCommonModule } from './core/common/common.module';
 import { CommonModule } from '@angular/common';
+import { CoverageTypesService } from './services/coverageTypes/coverageTypes.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { CommonModule } from '@angular/common';
   providers: [
     ApiService,
     PoliciesService,
-    RiskTypesService
+    RiskTypesService,
+    CoverageTypesService
   ],
   bootstrap: [AppComponent]
 })

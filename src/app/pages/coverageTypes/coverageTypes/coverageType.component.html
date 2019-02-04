@@ -1,0 +1,47 @@
+<div style="min-height: calc(100vh - 100px);">
+
+  <mat-toolbar>
+    <h1 class="capitalize">Coverage Types</h1>
+    <button mat-icon-button (click)="createCoverageType()">
+      <mat-icon>add_box</mat-icon>
+    </button>
+  </mat-toolbar>
+  
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> Id. </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="coverage">
+      <th mat-header-cell *matHeaderCellDef> Coverage </th>
+      <td mat-cell *matCellDef="let element"> {{element.coverage*100}}% </td>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let element"> 
+        <button mat-icon-button (click)="editCoverageType(element.id)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button (click)="removeCoverageType(element.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+  </table>
+
+</div>
