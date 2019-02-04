@@ -1,4 +1,9 @@
 <form class="form-container" [formGroup]="form">
+
+  <mat-form-field>
+        <input matInput placeholder="Coverage Id" formControlName="id">
+  </mat-form-field>
+
   <mat-form-field>
     <input matInput placeholder="Policy Name" formControlName="name">
   </mat-form-field>
@@ -16,7 +21,7 @@
   </mat-form-field>
 
   <mat-form-field>
-      <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="date">
+      <input matInput [matDatepicker]="picker" [(ngModel)]="planModel.start_time" placeholder="Choose a date" formControlName="date">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
@@ -27,7 +32,7 @@
               <mat-option [value]="risk.id">{{ risk.name }} </mat-option>
           </ng-template>
       </mat-select>
-    </mat-form-field>
+  </mat-form-field>
 
   <mat-form-field>
     <mat-select placeholder="Select Coverage" formControlName="coverageTypeId">
