@@ -9,6 +9,7 @@ export class AppComponent {
 
   private routes: Array<string> = [
     'policies',
+    'riskTypes',
     'about'
   ];
 

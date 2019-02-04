@@ -14,4 +14,14 @@ export class ApiService {
   post (path: string, entity: any): Observable<any> {
     return this.http.post(path, entity);
   }
+
+  delete (path: string, entity: any): Observable<any> {
+    return this.http.delete(path, entity);
+  }
+
+  put (path: string, entity: any): Observable<any> {
+    return this.http.put(path, entity);
+  }
+
+
 }
