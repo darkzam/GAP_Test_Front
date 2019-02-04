@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
 
   private routes: Array<string> = [
+    'clients',
     'policies',
     'riskTypes',
     'coverageTypes',

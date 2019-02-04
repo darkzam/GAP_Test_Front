@@ -12,6 +12,7 @@ import { RiskTypesService} from './services/riskTypes/riskTypes.service';
 import { GpaCommonModule } from './core/common/common.module';
 import { CommonModule } from '@angular/common';
 import { CoverageTypesService } from './services/coverageTypes/coverageTypes.service';
+import { ClientsService } from './services/clients/clients.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { CoverageTypesService } from './services/coverageTypes/coverageTypes.ser
     ApiService,
     PoliciesService,
     RiskTypesService,
-    CoverageTypesService
+    CoverageTypesService,
+    ClientsService
   ],
   bootstrap: [AppComponent]
 })
