@@ -13,6 +13,7 @@ import { GpaCommonModule } from './core/common/common.module';
 import { CommonModule } from '@angular/common';
 import { CoverageTypesService } from './services/coverageTypes/coverageTypes.service';
 import { ClientsService } from './services/clients/clients.service';
+import { AssignmentService } from './services/assignments/assignment.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ClientsService } from './services/clients/clients.service';
     PoliciesService,
     RiskTypesService,
     CoverageTypesService,
-    ClientsService
+    ClientsService,
+    AssignmentService
   ],
   bootstrap: [AppComponent]
 })

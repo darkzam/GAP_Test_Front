@@ -28,6 +28,9 @@
         <button mat-icon-button (click)="removeClient(element.id)">
           <mat-icon>delete</mat-icon>
         </button>
+        <button mat-icon-button routerLink="/clients/{{element.id}}/policies" >
+          <mat-icon>find_in_page</mat-icon>
+        </button>
       </td>
     </ng-container>
   
@@ -37,3 +40,6 @@
   </table>
 
 </div>
+
+
+<router-outlet></router-outlet>

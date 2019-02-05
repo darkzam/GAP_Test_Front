@@ -1,0 +1,16 @@
+<form class="form-container" [formGroup]="form">
+
+  <mat-form-field>
+    <mat-select placeholder="Select Policy" formControlName="policyId">
+        <ng-template ngFor [ngForOf]="policies" let-policy>
+            <mat-option [value]="policy.id">{{ policy.name }} {{ policy.price }}$ </mat-option>
+        </ng-template>
+    </mat-select>
+  </mat-form-field>
+  
+</form>
+
+<div class="action-footer">
+  <button mat-raised-button color="primary" class="margin-right" (click)="cancelForm()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="submitForm()">Save</button>
+</div>

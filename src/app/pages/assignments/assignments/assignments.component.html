@@ -1,0 +1,56 @@
+<div style="min-height: calc(100vh - 100px);">
+
+  <mat-toolbar *ngIf="client">
+    <h1 class="capitalize">Policies for Client: {{client.id}} ~ {{client.name}}</h1>
+    <button mat-icon-button (click)="createAssignment()">
+      <mat-icon>add_box</mat-icon>
+    </button>
+  </mat-toolbar>
+  
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> Id. </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef> Description </th>
+      <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+    </ng-container>
+  
+
+    <ng-container matColumnDef="period">
+      <th mat-header-cell *matHeaderCellDef> Period </th>
+      <td mat-cell *matCellDef="let element"> {{element.period}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef> Price </th>
+      <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let element"> 
+        <button mat-icon-button (click)="removeAssignment(element.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+  </table>
+
+</div>
