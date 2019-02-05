@@ -33,7 +33,7 @@ export class NewAssignmentComponent implements OnInit {
   private submitForm() {
 
     if (this.form.valid) {
-      this.assignmentsService.post( this.data.id, this.form.getRawValue()).subscribe((response: Response) => {
+      this.assignmentsService.post( this.data.client.id, { clientId: this.data.client.id, policyId: this.form.controls['policyId'].value } ).subscribe((response: Response) => {
         this.dialogRef.close(response);
         this.assignmentsService.onChangeAssignment.emit();
       });

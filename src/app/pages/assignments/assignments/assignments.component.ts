@@ -64,7 +64,7 @@ export class AssignmentsComponent implements OnInit {
   }
 
  private removeById(policyId: string | number){
-  this.assignmentService.delete(this.client.id,policyId).subscribe(response => {
+  this.assignmentService.delete(this.client.id, policyId).subscribe(response => {
     this.getAssignmentsForClient(this.client.id);
   });
   }
@@ -73,7 +73,8 @@ export class AssignmentsComponent implements OnInit {
     const newAssignmentDialog = this.dialog.open(NewAssignmentComponent, {
       width: '400px',
       data: {
-        policies : this.policies
+        policies : this.policies,
+        client : this.client
       }
     });
   }
